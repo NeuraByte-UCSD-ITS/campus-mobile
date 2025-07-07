@@ -27,12 +27,12 @@ class EventsAll extends StatelessWidget {
 
     if (listOfEvents.length > 0) {
       return GridView.extent(
-        maxCrossAxisExtent: 220, 
+        maxCrossAxisExtent: EventTile.tileWidth, // use the same width as the tile
         mainAxisSpacing: 8,
         crossAxisSpacing: 12,
         padding: const EdgeInsets.all(12),
         children: eventTiles,
-        childAspectRatio: 220 / 300, 
+        childAspectRatio: EventTile.tileWidth / EventTile.tileHeight, // match the tile's aspect ratio
       );
     } else {
       return ContainerView(

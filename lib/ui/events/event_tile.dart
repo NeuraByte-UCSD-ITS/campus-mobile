@@ -11,6 +11,7 @@ class EventTile extends StatelessWidget {
 
   /// LAYOUT CONSTANTS
   static const double tileWidth = 220; 
+  static const double tileHeight = 330; // unified tile height for all event tiles
   static const cornerRadius = Radius.circular(5.0);
   static const sideBorder = BorderSide(width: 0.3);
 
@@ -53,19 +54,23 @@ class EventTile extends StatelessWidget {
 
   Widget _eventDetailsCard(BuildContext context) {
     return SizedBox(
-      height: 300,
-      width: 240,       
+      height: tileHeight,
+      width: tileWidth,
+      // Add a black border around the entire tile
       child: DecoratedBox(
         decoration: BoxDecoration(
-          border: Border.all(width: 0.3),
+          border: Border.all(color: Colors.black, width: 1), // Black outline
           borderRadius: BorderRadius.all(cornerRadius),
         ),
-        child: Card(        
-          margin: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
+        child: Card(
+          margin: EdgeInsets.zero,
           elevation: 4.0,
-            // Tile Contents
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(cornerRadius),
+            side: BorderSide(color: Colors.black, width: 1), // Black border
+          ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start, // Align content to top
               children: [
                 _eventImageLoader(data.imageThumb),                
                 Row(
@@ -87,7 +92,7 @@ class EventTile extends StatelessWidget {
                   ],
                 ),
                 TileTitle(title: data.title),
-                SizedBox(height: 4),
+                SizedBox(height: 40),
               ],
             ),
           ),
